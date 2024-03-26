@@ -26,7 +26,7 @@ The way of installation of modet package:
 
 `pip install .`
 
-Please note that our Modet package requires CUDA to be installed in the environment rather than the cudatoolkit package from the conda environment. If cudatoolkit package is already present in the environment, please ensure it matches the system's CUDA version.
+Please note that the `modet` package requires CUDA to be installed in the system's environment rather than the `cudatoolkit` package from the conda environment. If the `cudatoolkit` package is already present in the environment, please ensure it matches the system's CUDA version.
 
 Our successfully installed environment for modet is as follows:
 - Ubuntu 22.04
