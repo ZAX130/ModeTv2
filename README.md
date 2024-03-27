@@ -10,6 +10,7 @@ Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
 
 ![图片1](https://github.com/ZAX130/ModeTv2/assets/43944700/b594621a-07c5-4eb3-8ac8-c5c9f2315499)
 
+ModeTv1(ModeT) links： [[paper]](https://github.com/ZAX130/SmileCode)  [[code]](https://github.com/ZAX130/SmileCode)
 ## Dataset
 The official access addresses of the public data sets are as follows：
 
