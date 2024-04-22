@@ -46,7 +46,8 @@ def main():
     lr = 0.0001
     head_dim = 6
     num_heads = [8,4,2,1,1]
-    save_dir = 'ModeTv2_cuda_nh({}{}{}{}{})_hd_{}_ncc_{}_reg_{}_lr_{}_54r/'.format(*num_heads, head_dim,weights[0], weights[1], lr)
+    channels = 8
+    save_dir = 'ModeTv2_cuda_nh({}{}{}{}{})_hd_{}_c_{}_ncc_{}_reg_{}_lr_{}_54r/'.format(*num_heads, head_dim,channels,weights[0], weights[1], lr)
     if not os.path.exists('experiments/' + save_dir):
         os.makedirs('experiments/' + save_dir)
     if not os.path.exists('logs/' + save_dir):
@@ -62,7 +63,7 @@ def main():
     '''
     Initialize model
     '''
-    model = ModeTv2_model(img_size, head_dim=head_dim, num_heads=num_heads, scale=1)
+    model = ModeTv2_model(img_size, head_dim=head_dim, num_heads=num_heads,channels=channels//2, scale=1)
     model.cuda()
 
     '''
