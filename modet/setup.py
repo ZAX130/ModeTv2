@@ -13,8 +13,8 @@ sources = glob.glob('*.cpp')+glob.glob('*.cu')
 setup(
     name='modet',
     version='1.0',
-    author='kwea123',
-    author_email='kwea123@gmail.com',
+    author='haiqiaowang',
+    author_email='2110246069@email.szu.edu.cn',
     description='cppcuda example',
     long_description='cppcuda example',
     ext_modules=[
