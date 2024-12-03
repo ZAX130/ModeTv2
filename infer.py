@@ -58,7 +58,7 @@ def main():
     model_dir = 'experiments/' + model_folder
 
     img_size = (160, 192, 160)
-    model = ModeTv2_model(img_size)
+    model = ModeTv2_model(img_size, head_dim=head_dim, num_heads=num_heads,channels=channels//2, scale=1)
     best_model = torch.load(model_dir + natsorted(os.listdir(model_dir))[model_idx])['state_dict']
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
     model.load_state_dict(best_model)
