@@ -53,7 +53,7 @@ def main():
     lr = 0.0001
     head_dim = 6
     num_heads = [8,4,2,1,1]
-    model_folder = 'ModeTv2_cuda_diff_nh({}{}{}{}{})_hd_{}_ncc_{}_reg_{}_lr_{}_54r/'.format(*num_heads, head_dim,weights[0], weights[1], lr)
+    model_folder = 'ModeTv2_cuda_diff_nh({}{}{}{}{})_hd_{}_c_{}_ncc_{}_reg_{}_lr_{}_54r/'.format(*num_heads, head_dim,channels,weights[0], weights[1], lr)
     model_idx = -1
     model_dir = 'experiments/' + model_folder
 
