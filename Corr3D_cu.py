@@ -8,7 +8,7 @@ Haiqiao Wang
 1807903986@qq.com
 Shenzhen University
 
-if you find this code useful, please cite the paper
+If you find this code useful, please cite the paper
 @misc{wang2024modetv2,
       title={ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration}, 
       author={Haiqiao Wang and Zhuoyuan Wang and Dong Ni and Yi Wang},
