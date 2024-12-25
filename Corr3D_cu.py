@@ -2,7 +2,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as nnf
 from functional import modetqkrpb_cu
-
+'''
+Modified and tested by:
+Haiqiao Wang
+1807903986@qq.com
+Shenzhen University
+'''
 class Corr3D(nn.Module):
     def __init__(self, kernel_size=3):
         super(Corr3D, self).__init__()
