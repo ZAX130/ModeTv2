@@ -1,6 +1,8 @@
 # ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration
 
 By Haiqiao Wang, Zhuoyuan Wang, Dong Ni, Yi Wang.
+## news
+(18/12/2024) We implemented the CUDA version of the 3D Correlation layer based on the modet package. For specific usage, see [Correlation&modet.md](https://github.com/ZAX130/ModeTv2/blob/main/Corr3D%26modet.md)
 
 Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
 
