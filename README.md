@@ -4,7 +4,7 @@ By Haiqiao Wang, Zhuoyuan Wang, Dong Ni, Yi Wang.
 
 Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
 ## News
-(18/12/2024) We implemented the CUDA version of the 3D Correlation layer based on the modet package. For specific usage, see [Correlation&modet.md](https://github.com/ZAX130/ModeTv2/blob/main/Corr3D%26modet.md)
+(28/12/2024) We implemented the CUDA version of the 3D Correlation layer based on the modet package. For specific usage, see [Correlation&modet.md](https://github.com/ZAX130/ModeTv2/blob/main/Corr3D%26modet.md)
 
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.9-ff69b4.svg" /></a>
 <a href= "https://pytorch.org/"> <img src="https://img.shields.io/badge/PyTorch-11.3-2BAF2B.svg" /></a>
