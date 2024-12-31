@@ -44,7 +44,7 @@ Our successfully installed environment for modet is as follows:
 For convenience, we are sharing the preprocessed [LPBA](https://drive.usercontent.google.com/download?id=1mFzZDn2qPAiP1ByGZ7EbsvEmm6vrS5WO&export=download&authuser=0) dataset used in our experiments. Once uncompressed, simply modify the "LPBA_path" in `train.py` to the path name of the extracted data. Next, you can execute `train.py` to train the network, and after training, you can run `infer.py` to test the network performance. The small version of ModeTv2 and ModeTv2-diff can run on 2080ti on our preprocessed LPBA dataset. Please note that the suffix "_diff" denotes the diffeomorphic model.
 
 ## Citation
-If you use the code in your research, please cite:
+If you find the code useful, please cite our paper.
 ```
 @misc{wang2024modetv2,
       title={ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration}, 
