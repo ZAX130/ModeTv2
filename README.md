@@ -35,11 +35,11 @@ Our successfully installed environment for modet is as follows:
 - Ubuntu 22.04
 - pip 21.2.4
 - gcc 9.5.0
-- CUDA 11.3
-- Python 3.9
-- PyTorch 1.11.0
+- CUDA 11.3/11.8/12.1
+- Python 3.9/3.11/3.12
+- PyTorch 1.11.0/2.4.1
 - NumPy 1.21.5
-- Nvidia Tesla V100
+- Nvidia Tesla V100/Nvidia RTX 2080Ti/Nvidia RTX 3090
 
 For convenience, we are sharing the preprocessed [LPBA](https://drive.usercontent.google.com/download?id=1mFzZDn2qPAiP1ByGZ7EbsvEmm6vrS5WO&export=download&authuser=0) dataset used in our experiments. Once uncompressed, simply modify the "LPBA_path" in `train.py` to the path name of the extracted data. Next, you can execute `train.py` to train the network, and after training, you can run `infer.py` to test the network performance. The small version of ModeTv2 and ModeTv2-diff can run on 2080ti on our preprocessed LPBA dataset. Please note that the suffix "_diff" denotes the diffeomorphic model.
 
