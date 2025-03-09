@@ -32,12 +32,12 @@ The way of installation of modet package:
 Please note that the `modet` package requires CUDA to be installed in the system's environment rather than the `cudatoolkit` package from the conda environment. If the `cudatoolkit` package is already present in the environment, please ensure it matches the system's CUDA version.
 
 Our successfully installed environment for modet is as follows:
-- Ubuntu 22.04
+- Ubuntu 22.04 / Windows 11
 - pip 21.2.4
-- gcc 9.5.0
+- gcc 9.5.0 / MSVC v142 (VS2022)
 - CUDA 11.3/11.8/12.1
 - Python 3.9/3.11/3.12
-- PyTorch 1.11.0/2.4.1
+- PyTorch 1.11.0/2.3.0/2.4.1
 - NumPy 1.21.5
 - Nvidia Tesla V100/Nvidia RTX 2080Ti/Nvidia RTX 3090
 
