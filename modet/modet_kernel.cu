@@ -28,19 +28,18 @@ __global__ void modet_fw_kernel(
     const int dim,
     const int KERNEL_SIZE)
 {
-    const int z = blockIdx.z * blockDim.z + threadIdx.z; // batch*heads
+    const int z = blockIdx.z * blockDim.z + threadIdx.z;
     if (z < batch_size * heads)
     {
-        const int x = blockIdx.x * blockDim.x + threadIdx.x; // batch*heads
+        const int x = blockIdx.x * blockDim.x + threadIdx.x;
         if (x < height * width * length)
         {
             const int y = blockIdx.y * blockDim.y + threadIdx.y;
             if (y < KERNEL_SIZE * KERNEL_SIZE* KERNEL_SIZE)
             {
-                const int b = z / heads;     // 第几个batch
-                const int h = z - b * heads; // 第几个batch中的第几个head
+                const int b = z / heads;
+                const int h = z - b * heads;
 
-                // 计算3x3x3核上的第几个数
                 int indtmp1 = y/KERNEL_SIZE;
                 const int kk = y - indtmp1 * KERNEL_SIZE;
 
@@ -51,11 +50,6 @@ __global__ void modet_fw_kernel(
                 indtmp2 = indtmp1/KERNEL_SIZE;
                 const int ki = indtmp1 - indtmp2 * KERNEL_SIZE;
 
-                // const int ki = y / (KERNEL_SIZE * KERNEL_SIZE);
-                // const int kj = (y - ki * KERNEL_SIZE * KERNEL_SIZE) / KERNEL_SIZE;
-                // const int kk = y - ki * KERNEL_SIZE * KERNEL_SIZE - kj * KERNEL_SIZE;
-
-                // 计算要算第几个像素
                 indtmp1 = x/length;
                 const int k = x - indtmp1 * length;
 
@@ -65,18 +59,13 @@ __global__ void modet_fw_kernel(
                 indtmp1 = indtmp2;
                 indtmp2 = indtmp1/height;
                 const int i = indtmp1 - indtmp2 * height;
-                // const int i = x / (width * length);
-                // const int j = (x - i * width * length) / length;
-                // const int k = x - i * width * length - j * length;
-                // query:B,heads,H,W,L,dims
-                // key:B,heads,H+2,W+2,L+2,dims
-                // rpb:heads, kernel_size, kernel_size,kernel_size
+                
                 scalar_t updt = scalar_t(0);
                 const int queryOffset = b * query.stride(0) + h * query.stride(1) + i * query.stride(2) + j * query.stride(3) + k * query.stride(4);
                 const int keyOffset = b * key.stride(0) + h * key.stride(1) + (ki + i) * key.stride(2) + (kj + j) * key.stride(3) + (kk + k) * key.stride(4);
                 #pragma unroll
                 for (int dimOffset = 0; dimOffset < dim; dimOffset++)
-                    updt += query.data()[queryOffset + dimOffset] * key.data()[keyOffset + dimOffset]; // q，k每个dim相乘再相加
+                    updt += query.data()[queryOffset + dimOffset] * key.data()[keyOffset + dimOffset];
                 const int index = b * attn.stride(0) + h * attn.stride(1) + i * attn.stride(2) + j * attn.stride(3) + k * attn.stride(4) + y * attn.stride(5);
                 const int rpbIndex = h * rpb.stride(0) + ki * rpb.stride(1) + kj * rpb.stride(2) + kk * rpb.stride(3);
                 updt += rpb.data()[rpbIndex];
@@ -90,9 +79,7 @@ torch::Tensor modet_fw_cu(
     const torch::Tensor &query,
     const torch::Tensor &key,
     const torch::Tensor &rpb)
-{ // query:B,heads,H,W,L,dims
-    // key:B,heads,H+2,W+2,L+2,dims
-    // rpb:heads, kernel_size, kernel_size,kernel_size
+{
     int64_t batch_size = query.size(0);
     int64_t heads = query.size(1);
     int64_t height = query.size(2);
@@ -114,23 +101,14 @@ torch::Tensor modet_fw_cu(
 
     auto attn = torch::zeros(
         {batch_size, heads, height, width, length, kernel_size_sq}, query.options());
-    // auto attn = torch::zeros(
-    //         {6, 6, 12, 12, 12, 9}, query.options());
+    
     const auto stream = c10::cuda::getCurrentCUDAStream();
     const dim3 blocks(
         (xsize + PIXELTHREADS - 1) / PIXELTHREADS,
         (kernel_size_sq + KERNELTHREADS - 1) / KERNELTHREADS,
         (zsize + BATCHTHREADS - 1) / BATCHTHREADS);
     const dim3 threads(PIXELTHREADS, KERNELTHREADS, BATCHTHREADS);
-    //     const dim3 blocks(16,16,16);
-    // const dim3 threads(16, 16, 4);
-    // std::cout<<"threads:"<<PIXELTHREADS<<' '<<KERNELTHREADS<<' '<<BATCHTHREADS<<std::endl;
-    // std::cout<<"threads:"<<(xsize + PIXELTHREADS - 1) / PIXELTHREADS<<' '<<(kernel_size_sq + KERNELTHREADS - 1) / KERNELTHREADS<<' '<<(zsize + BATCHTHREADS - 1) / BATCHTHREADS<<std::endl;
-    // std::cout<<query.size(0)<<query.size(1)<<' '<<query.size(2)<<' '<<query.size(3)<<' '<<query.size(4)<<' '<<query.size(5)<<std::endl;
-    // std::cout<<key.size(0)<<key.size(1)<<' '<<key.size(2)<<' '<<key.size(3)<<' '<<key.size(4)<<' '<<key.size(5)<<std::endl;
-    // std::cout<<rpb.size(0)<<rpb.size(1)<<' '<<rpb.size(2)<<' '<<rpb.size(3)<<std::endl;
-    // std::cout<<attn.size(0)<<attn.size(1)<<' '<<attn.size(2)<<' '<<attn.size(3)<<' '<<attn.size(4)<<' '<<attn.size(5)<<std::endl;
-    // std::cout<<height<<' '<<width<<' '<<length<<' '<<batch_size<<' '<<heads<<' '<<dim<<std::endl;
+   
     AT_DISPATCH_FLOATING_TYPES(query.scalar_type(), "modet_fw_cu", ([&]
                                                                     {
         const auto query_a = query.packed_accessor32<scalar_t,6,torch::DefaultPtrTraits>();
@@ -138,7 +116,7 @@ torch::Tensor modet_fw_cu(
         const auto rpb_a = rpb.packed_accessor32<scalar_t,4,torch::DefaultPtrTraits>();
         auto attn_a = attn.packed_accessor32<scalar_t,6,torch::DefaultPtrTraits>();
          modet_fw_kernel<scalar_t><<<blocks, threads,0,stream>>>(
-        query_a, // 形态转换
+        query_a, 
         key_a,
         rpb_a,
         attn_a,
@@ -202,7 +180,6 @@ __global__ void modetdq_bw_kernel(
                     ++attnOffset;
                 }
         d_query.data()[linearIndex] = d_query_update;
-        // printf("index=%d h=%d i=%d j=%d k=%d ni=%d nj=%d nk=%d ei=%d ej=%d ek=%d\n",linearIndex,h,i,j,k,ni,nj,nk,ei,ej,ek);
     }
 }
 
@@ -239,7 +216,6 @@ __global__ void modetdk_bw_kernel(
         const int h = indtmp1 - indtmp2 * heads;
 
         const int b = indtmp2;
-        //算最先和最后包含k[i,j,k]的窗的q的ijk
         const int ni = get_backward_window_start(i, KERNEL_SIZE);
         const int nj = get_backward_window_start(j, KERNEL_SIZE);
         const int nk = get_backward_window_start(k, KERNEL_SIZE);
@@ -306,11 +282,11 @@ __global__ void modetdrpb_bw_kernel(
         scalar_t d_rpb_update = scalar_t(0);
         int attnOffset = h * d_attn.stride(1) + i * d_attn.stride(2) + j * d_attn.stride(3)+ k * d_attn.stride(4) + (ki*KERNEL_SIZE*KERNEL_SIZE + kj*KERNEL_SIZE + kk);
         #pragma unroll
-        for (int b=0; b < batch_size; ++b){//在b维上累加
+        for (int b=0; b < batch_size; ++b){
             d_rpb_update += d_attn.data()[attnOffset];
             attnOffset += d_attn.stride(0);
         }
-        // printf("%d %d %d %d %d %d %d %d\n",linearIndex,h,i,j,k,ki,kj,kk);
+        
         const int index = h * d_rpb.stride(0) + ki * d_rpb.stride(1) + kj * d_rpb.stride(2) + kk * d_rpb.stride(3);
         at::native::fastAtomicAdd(d_rpb.data(), index, d_rpb_numel, static_cast<scalar_t>(d_rpb_update), true);
     }
@@ -332,8 +308,6 @@ std::vector<torch::Tensor> modet_bw_cu(
     int kernel_size_sq = d_attn.size(5);
     
     int kernel_size = pow(kernel_size_sq, 1/3.0);
-
-    // std::cout<<kernel_size_sq<<kernel_size<<std::endl;
     CHECK_3DFEATMAP(height, width,length, kernel_size);
     CHECK_KERNELSIZE("modet_backward", kernel_size);
     int64_t RPB_MAX = kernel_size;
