@@ -1,4 +1,4 @@
-# ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration
+# ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration (MIA2026)
 
 By Haiqiao Wang, Zhuoyuan Wang, Dong Ni, Yi Wang.
 
