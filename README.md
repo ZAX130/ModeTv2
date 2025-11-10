@@ -4,7 +4,7 @@ By Haiqiao Wang, Zhuoyuan Wang, Dong Ni, Yi Wang.
 
 Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
 ## News
-(06/11/2025) The paper has been accepted by Medical Image Analysis now.
+(06/11/2025) &#127881; The paper has been accepted by Medical Image Analysis.
 
 (28/12/2024) We implemented the CUDA version of the 3D Correlation layer based on the modet package. For specific usage, see [Correlation&modet.md](https://github.com/ZAX130/ModeTv2/blob/main/Corr3D%26modet.md)
 
