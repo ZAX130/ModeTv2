@@ -16,14 +16,17 @@ Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
 
 ModeTv1(ModeT) links： [[paper]](https://github.com/ZAX130/SmileCode)  [[code]](https://github.com/ZAX130/SmileCode)
 ## Dataset
-The official access addresses of the public data sets are as follows：
+The access addresses of the official and preprocessed public data sets are as follows：
 
-LPBA [[link]](https://resource.loni.usc.edu/resources/atlases-downloads/)
+LPBA [[link]](https://resource.loni.usc.edu/resources/atlases-downloads/) [[preprocessed]](https://drive.usercontent.google.com/download?id=1mFzZDn2qPAiP1ByGZ7EbsvEmm6vrS5WO&export=download&authuser=0)
 
-Mindboggle [[link]](https://osf.io/yhkde/)
+Mindboggle [[link]](https://osf.io/yhkde/) [[preprocessed]](https://drive.usercontent.google.com/download?id=17WLZ-eJwNTG0U93WuEuyWUOQlhsUrxjJ&export=download&authuser=0) 
 
-ABCT [[link]](https://cloud.imi.uni-luebeck.de/s/yiQZfo43YBBg7zL)
+ABCT [[link]](https://cloud.imi.uni-luebeck.de/s/yiQZfo43YBBg7zL) [[preprocessed]](https://drive.usercontent.google.com/download?id=1hrb-qVgbF1acZ5V-tGrvbl2CUHi3dAZP&export=download&authuser=0)
 
+IXI [[link]](https://surfer.nmr.mgh.harvard.edu/pub/data/) [[preprocessed]](https://drive.usercontent.google.com/download?id=1-VQewCVNj5eTtc3eQGhTM2yXBQmgm8Ol&export=download&authuser=0)
+
+Note that the preprocessed version of IXI is adopted from [TransMorph](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md).
 ## Instructions and System Environment
 The way of installation of modet package:
 
@@ -43,7 +46,7 @@ Our successfully installed environment for modet is as follows:
 - NumPy 1.21.5
 - Nvidia Tesla V100/Nvidia RTX 2080Ti/Nvidia RTX 3090
 
-For convenience, we are sharing the preprocessed [LPBA](https://drive.usercontent.google.com/download?id=1mFzZDn2qPAiP1ByGZ7EbsvEmm6vrS5WO&export=download&authuser=0) dataset used in our experiments. Once uncompressed, simply modify the "LPBA_path" in `train.py` to the path name of the extracted data. Next, you can execute `train.py` to train the network, and after training, you can run `infer.py` to test the network performance. The small version of ModeTv2 and ModeTv2-diff can run on 2080ti on our preprocessed LPBA dataset. Please note that the suffix "_diff" denotes the diffeomorphic model.
+For convenience, we use the preprocessed [LPBA](https://drive.usercontent.google.com/download?id=1mFzZDn2qPAiP1ByGZ7EbsvEmm6vrS5WO&export=download&authuser=0) dataset as an example. Once uncompressed, simply modify the "LPBA_path" in `train.py` to the path name of the extracted data. Next, you can execute `train.py` to train the network, and after training, you can run `infer.py` to test the network performance. The small version of ModeTv2 and ModeTv2-diff can run on 2080ti on our preprocessed LPBA dataset. Please note that the suffix "_diff" denotes the diffeomorphic model.
 
 ## Citation
 If you find the code useful, please cite our paper.
