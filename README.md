@@ -2,7 +2,7 @@
 
 By Haiqiao Wang, Zhuoyuan Wang, Dong Ni, Yi Wang.
 
-Paper link: [[arxiv]](https://arxiv.org/abs/2403.16526)
+Paper link: [[paper]](https://doi.org/10.1016/j.media.2025.103862) [[arxiv]](https://arxiv.org/abs/2403.16526)
 ## News
 (06/11/2025) &#127881; The paper has been accepted by Medical Image Analysis.
 
@@ -51,13 +51,14 @@ For convenience, we use the preprocessed [LPBA](https://drive.usercontent.google
 ## Citation
 If you find the code useful, please cite our paper.
 ```
-@misc{wang2024modetv2,
-      title={ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration}, 
-      author={Haiqiao Wang and Zhuoyuan Wang and Dong Ni and Yi Wang},
-      year={2024},
-      eprint={2403.16526},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{WANG2025103862,
+title = {ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration},
+journal = {Medical Image Analysis},
+pages = {103862},
+year = {2025},
+issn = {1361-8415},
+doi = {https://doi.org/10.1016/j.media.2025.103862},
+author = {Haiqiao Wang and Zhuoyuan Wang and Dong Ni and Yi Wang},
 }
 ```
 The overall framework and some network components of the code are heavily based on [TransMorph](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration) and [VoxelMorph](https://github.com/voxelmorph/voxelmorph). We are very grateful for their contributions. The file makePklDataset.py shows how to make a pkl dataset from the original LPBA dataset. If you have any other questions about the .pkl format, please refer to the github page of [[TransMorph_on_IXI]](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md). 
