@@ -9,13 +9,14 @@ Haiqiao Wang
 Shenzhen University
 
 If you find this code useful, please cite the paper
-@misc{wang2024modetv2,
-      title={ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration}, 
-      author={Haiqiao Wang and Zhuoyuan Wang and Dong Ni and Yi Wang},
-      year={2024},
-      eprint={2403.16526},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{WANG2025103862,
+      title = {ModeTv2: GPU-accelerated Motion Decomposition Transformer for Pairwise Optimization in Medical Image Registration},
+      journal = {Medical Image Analysis},
+      pages = {103862},
+      year = {2025},
+      issn = {1361-8415},
+      doi = {https://doi.org/10.1016/j.media.2025.103862},
+      author = {Haiqiao Wang and Zhuoyuan Wang and Dong Ni and Yi Wang},
 }
 '''
 class Corr3D(nn.Module):
